@@ -21,6 +21,7 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity  {
     FirebaseAuth firebaseAuth;
@@ -83,6 +84,14 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         firebaseAuth = FirebaseAuth.getInstance();
+
+        Button signInButton = findViewById(R.id.signInButton);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn();
+            }
+        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
