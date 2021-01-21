@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "964326883546",
+    "project_id": "icons724a",
+    "storage_bucket": "icons724a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964326883546:android:fad123659cff492acb25e3",
+        "android_client_info": {
+          "package_name": "com.group724.icons"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964326883546-inq2otc6gnumjlolgb904bsldfih3r6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgFVB6b9tQuOayBa75Oap4BIadSOca1NY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964326883546-inq2otc6gnumjlolgb904bsldfih3r6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

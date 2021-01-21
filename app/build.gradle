@@ -2,6 +2,10 @@ plugins {
     id 'com.android.application'
 }
 
+apply plugin: 'com.android.application'
+
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -12,6 +16,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,7 +34,13 @@ android {
 }
 
 dependencies {
-
+    implementation platform('com.google.firebase:firebase-bom:26.3.0')
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-auth:18.0.0'
+    implementation 'com.google.android.gms:play-services-gcm:17.0.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'

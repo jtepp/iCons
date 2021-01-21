@@ -2,23 +2,88 @@ package com.group724.icons;
 
 import android.os.Bundle;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.OAuthProvider;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
 
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
+    FirebaseAuth firebaseAuth;
+    OAuthProvider.Builder provider = OAuthProvider.newBuilder("microsoft.com");
+
+    void signIn(){
+
+        Task<AuthResult> pendingResultTask = firebaseAuth.getPendingAuthResult();
+    if (pendingResultTask != null) {
+            // There's something already here! Finish the sign-in for your user.
+            pendingResultTask
+                    .addOnSuccessListener(
+                            new OnSuccessListener<AuthResult>() {
+                                @Override
+                                public void onSuccess(AuthResult authResult) {
+                                    // User is signed in.
+                                    // IdP data available in
+                                    // authResult.getAdditionalUserInfo().getProfile().
+                                    // The OAuth access token can also be retrieved:
+                                    // authResult.getCredential().getAccessToken().
+                                    // The OAuth ID token can also be retrieved:
+                                    // authResult.getCredential().getIdToken().
+                                }
+                            })
+                    .addOnFailureListener(
+                            new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    //handle failure
+                                }
+                            });
+        } else {
+        firebaseAuth
+                .startActivityForSignInWithProvider(/* activity= */ this, provider.build())
+                .addOnSuccessListener(
+                        new OnSuccessListener<AuthResult>() {
+                            @Override
+                            public void onSuccess(AuthResult authResult) {
+                                // User is signed in.
+                                // IdP data available in
+                                // authResult.getAdditionalUserInfo().getProfile().
+                                // The OAuth access token can also be retrieved:
+                                // authResult.getCredential().getAccessToken().
+                                // The OAuth ID token can also be retrieved:
+                                // authResult.getCredential().getIdToken().
+                            }
+                        })
+                .addOnFailureListener(
+                        new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Handle failure.
+                            }
+                        });
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        firebaseAuth = FirebaseAuth.getInstance();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
