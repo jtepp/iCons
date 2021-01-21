@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "964326883546-2lmlpc54j4ivgvmkiinhahg09i0itflg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.group724.icons",
+            "certificate_hash": "20ae11dc442eba8b8aee11d3cecec9a1b701cda3"
+          }
+        },
+        {
           "client_id": "964326883546-inq2otc6gnumjlolgb904bsldfih3r6s.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -1,5 +1,6 @@
 package com.group724.icons;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -17,18 +18,23 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
+import android.util.Log;
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity  {
+public class Welcome extends AppCompatActivity  {
     FirebaseAuth firebaseAuth;
     OAuthProvider.Builder provider = OAuthProvider.newBuilder("microsoft.com");
 
-    void signIn(){
+    void advanceToCategories(){
+        startActivity(new Intent(Welcome.this, CategoryPicking.class));
+    }
 
+    void signIn(){
+        Log.d("FUNC", "RUNNING");
         Task<AuthResult> pendingResultTask = firebaseAuth.getPendingAuthResult();
     if (pendingResultTask != null) {
             // There's something already here! Finish the sign-in for your user.
@@ -37,6 +43,7 @@ public class MainActivity extends AppCompatActivity  {
                             new OnSuccessListener<AuthResult>() {
                                 @Override
                                 public void onSuccess(AuthResult authResult) {
+                                    Log.d("TOP SUCCESS", "success");
                                     // User is signed in.
                                     // IdP data available in
                                     // authResult.getAdditionalUserInfo().getProfile().
@@ -51,6 +58,7 @@ public class MainActivity extends AppCompatActivity  {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     //handle failure
+                                    Log.d("TOP FAILURE", "fail");
                                 }
                             });
         } else {
@@ -60,6 +68,8 @@ public class MainActivity extends AppCompatActivity  {
                         new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
+                                Log.d("BOTTOM SUCCESS", "success");
+                                advanceToCategories();
                                 // User is signed in.
                                 // IdP data available in
                                 // authResult.getAdditionalUserInfo().getProfile().
@@ -74,6 +84,7 @@ public class MainActivity extends AppCompatActivity  {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 // Handle failure.
+                                Log.d("BOTTOM FAILURE", e.toString());
                             }
                         });
         }
@@ -96,14 +107,8 @@ public class MainActivity extends AppCompatActivity  {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+
     }
 
     @Override
