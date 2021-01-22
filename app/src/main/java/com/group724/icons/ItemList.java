@@ -3,36 +3,23 @@ package com.group724.icons;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.auth.User;
 
 public class ItemList extends AppCompatActivity {
 
@@ -46,10 +33,11 @@ public class ItemList extends AppCompatActivity {
         setContentView(R.layout.activity_item_list);
         List<Item> items = new ArrayList<Item>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        LinearLayout itemLayout = findViewById(R.id.itemLayout);
+        LinearLayout itemLayout = findViewById(R.id.scrollLayout);
         ref.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                itemLayout.removeAllViews();
                 for (DocumentSnapshot d : value.getDocuments()){
 //                    Log.d("Document", d.getData().toString());
                     if (d.getString("category").equalsIgnoreCase(category) || category.equalsIgnoreCase("all")) {
