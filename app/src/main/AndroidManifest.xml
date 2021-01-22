@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ICons">
-        <activity android:name=".ItemList"></activity>
+        <activity android:name=".Confirmation"></activity>
+        <activity android:name=".ItemInfo" />
+        <activity android:name=".ItemList" />
         <activity
             android:name=".CategoryPicking"
             android:label="@string/title_activity_category_picking"

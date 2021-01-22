@@ -6,6 +6,7 @@ import java.util.List;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +25,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class ItemList extends AppCompatActivity {
 
 
-    private CollectionReference ref = FirebaseFirestore.getInstance().collection("items");
+    CollectionReference ref = FirebaseFirestore.getInstance().collection("items");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class ItemList extends AppCompatActivity {
 //                    Log.d("Document", d.getData().toString());
                     if (d.getString("category").equalsIgnoreCase(category) || category.equalsIgnoreCase("all")) {
                         Item doc = d.toObject(Item.class);
+                        doc.setID(d.getId());
                         Log.d("TAG", d.getId() + " => " + doc);
                         itemLayout.addView(returnBtn(doc));
                     }
@@ -71,37 +73,6 @@ public class ItemList extends AppCompatActivity {
 
         TextView listHeader = findViewById(R.id.listHeader);
         listHeader.setText(category);
-        listHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-//
-//                for (Item i : items) {
-//                    Button btn = new Button(getApplicationContext());
-//                    btn.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-//                    btn.setText("BUTTON: " + i.getName());
-//                    btn.setTag(i);
-//                    btn.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            Log.d("CLCJSDFKLDSJ", i.getCategory());
-//                        }
-//                    });
-//                    itemLayout.addView(btn);
-//                }
-
-            }
-        });
-
-
-
-
-
-
-
-
-
-
 
 
     }
@@ -113,7 +84,11 @@ public class ItemList extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("CLCJSDFKLDSJ", i.getCategory());
+                Log.d("CLCJSDFKLDSJ", "ID"+i.getID());
+                Intent move = new Intent(ItemList.this, ItemInfo.class);
+                move.putExtra("ID",i.getID());
+                startActivity(move);
+
             }
         });
         return btn;
