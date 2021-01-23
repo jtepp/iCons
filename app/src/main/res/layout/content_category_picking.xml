@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="125dp"
         android:layout_marginLeft="125dp"
-        android:layout_marginTop="232dp"
+        android:layout_marginTop="268dp"
         android:layout_marginEnd="125dp"
         android:layout_marginRight="125dp"
         android:gravity="center"
@@ -87,5 +87,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/categoryHeader" />
+
+    <Button
+        android:id="@+id/Chargers"
+        android:layout_width="215dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="24dp"
+        android:text="Chargers"
+        android:textSize="20sp"
+        app:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toTopOf="@+id/toText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toAll" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

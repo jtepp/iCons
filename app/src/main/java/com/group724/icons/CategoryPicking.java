@@ -55,5 +55,14 @@ public class CategoryPicking extends AppCompatActivity {
                 startActivity(in);
             }
         });
+        Button chargers = findViewById(R.id.Chargers);
+        chargers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), ItemList.class);
+                in.putExtra("CATEGORY", "Chargers");
+                startActivity(in);
+            }
+        });
     }
 }
