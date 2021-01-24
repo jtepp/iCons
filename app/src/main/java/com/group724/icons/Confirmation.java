@@ -37,7 +37,7 @@ public class Confirmation extends AppCompatActivity {
                 if (response.toString().equals("success")){
                     result = Snackbar.make(findViewById(android.R.id.content), "Order sent, check your email soon to see if your order was accepted", Snackbar.LENGTH_SHORT);
                     result.show();
-                    Intent back = new Intent(Confirmation.this, ItemList.class);
+                    Intent back = new Intent(getApplicationContext(), ItemList.class);
                     startActivity(back);
                 } else {
                     result = Snackbar.make(findViewById(android.R.id.content), "Error sending request. Check your network connection and try again", Snackbar.LENGTH_SHORT);
