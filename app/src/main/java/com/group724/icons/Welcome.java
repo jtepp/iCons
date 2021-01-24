@@ -1,6 +1,8 @@
 package com.group724.icons;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -25,13 +27,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import java.util.Map;
+
 public class Welcome extends AppCompatActivity  {
     FirebaseAuth firebaseAuth;
     OAuthProvider.Builder provider = OAuthProvider.newBuilder("microsoft.com");
-
-    void advanceToCategories(){
-        startActivity(new Intent(Welcome.this, CategoryPicking.class));
-    }
 
     void signIn(){
         Log.d("FUNC", "RUNNING");
@@ -68,8 +68,20 @@ public class Welcome extends AppCompatActivity  {
                         new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
+                                Map<String, Object> p = authResult.getAdditionalUserInfo().getProfile();
                                 Log.d("BOTTOM SUCCESS", "success");
-                                advanceToCategories();
+                                Intent i = new Intent(Welcome.this, CategoryPicking.class);
+                                i.putExtra("NAME", p.get("displayName").toString());
+
+                                Context context = getApplicationContext();
+                                SharedPreferences sharedPref = context.getSharedPreferences(
+                                        "iconsPref", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPref.edit();
+                                editor.putString("mail", p.get("mail").toString());
+                                editor.putString("name", p.get("displayName").toString());
+                                editor.apply();
+                                Log.d("FSDILDFJDSJSLKJLFKJDLF", "MAIL"+sharedPref.getString("mail",null));
+                                startActivity(i);
                                 // User is signed in.
                                 // IdP data available in
                                 // authResult.getAdditionalUserInfo().getProfile().
@@ -111,9 +123,18 @@ public class Welcome extends AppCompatActivity  {
     skip.setOnClickListener(new View.OnClickListener(){
         @Override
         public void onClick(View v) {
-            advanceToCategories();
+            Intent i = new Intent(Welcome.this, CategoryPicking.class);
+            startActivity(i);
         }
         });
+        Context context = getApplicationContext();
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                "iconsPref", Context.MODE_PRIVATE);
+    if (sharedPref.getString("name", null) != null) {
+        Intent i = new Intent(Welcome.this, CategoryPicking.class);
+        i.putExtra("NAME", sharedPref.getString("name", null));
+        startActivity(i);
+    }
 
     }
 

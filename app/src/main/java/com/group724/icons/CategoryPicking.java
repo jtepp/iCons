@@ -22,6 +22,12 @@ public class CategoryPicking extends AppCompatActivity {
         setContentView(R.layout.activity_category_picking);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    Bundle e = getIntent().getExtras();
+        if (e.containsKey("NAME")){
+            Snackbar welc = Snackbar.make(findViewById(android.R.id.content), "Welcome, " + e.getString("NAME"), Snackbar.LENGTH_LONG);
+            welc.show();
+        }
+
 
         TextView categoryHeader = findViewById(R.id.categoryHeader);
         categoryHeader.setTypeface(null, Typeface.BOLD);
