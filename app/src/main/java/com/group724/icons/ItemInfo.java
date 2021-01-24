@@ -1,5 +1,6 @@
 package com.group724.icons;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,7 +13,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class ItemInfo extends AppCompatActivity {
 
@@ -26,21 +29,25 @@ public class ItemInfo extends AppCompatActivity {
         TextView name = findViewById(R.id.itemName), category = findViewById(R.id.itemCategory), remaining = findViewById(R.id.remaining);
         Button request = findViewById(R.id.req);
 
-        ref.document("items/"+itemID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        ref.document("items/"+itemID).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot doc) {
-             Item item = doc.toObject(Item.class);
+            public void onEvent(@Nullable DocumentSnapshot doc, @Nullable FirebaseFirestoreException error) {
+                Item item = doc.toObject(Item.class);
                 item.setID(doc.getId());
-             name.setText(item.getName());
-             category.setText(item.getCategory());
-             remaining.setText(item.getAvailable()+" remaining");
-             if (item.getAvailable() > 0) {
-                 request.setEnabled(false);
-             } else {
-                 request.setEnabled(true);
-             }
+                name.setText(item.getName());
+                category.setText(item.getCategory());
+                remaining.setText(item.getAvailable()+" remaining");
+                if (item.getAvailable() > 0) {
+                    request.setEnabled(false);
+                } else {
+                    request.setEnabled(true);
+                }
             }
         });
+
+
+
+        
 
 
         request.setOnClickListener(new View.OnClickListener() {

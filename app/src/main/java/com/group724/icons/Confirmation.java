@@ -31,7 +31,7 @@ public class Confirmation extends AppCompatActivity {
                 "iconsPref", Context.MODE_PRIVATE);
         String room = "225";
 
-        String html = "<h1>Incoming order from Room 220</h1><p>Request: 1 Mac charger</p><p>Date: 5:30 PM Jan 24, 2021</p><a href='https://iconsportal.netlify.app/response?info={id:["+itemID+"],date:Date().toString(),room:`"+room+"`,mail:`"+sharedPref.getString("mail",null)+"`' >Click to accept order on the iCons Portal</a>";
+        String html = "<h1>Incoming order from Room 220</h1><p>Request: 1 Mac charger</p><p>Date: 5:30 PM Jan 24, 2021</p><a href='https://iconsportal.netlify.app/response?info={\"id\":[\""+itemID+"\"],\"date\":Date().toString(),room:\""+room+"\",mail:\""+sharedPref.getString("mail",null)+"\"' >Click to accept order on the iCons Portal</a>";
 
         RequestQueue rq = Volley.newRequestQueue(this);
         String url = "https://allpurpose.netlify.app/.netlify/functions/email?s=Incoming%20Order&h="+html+"";
