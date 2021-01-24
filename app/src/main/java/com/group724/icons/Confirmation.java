@@ -1,6 +1,8 @@
 package com.group724.icons;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,25 +26,22 @@ public class Confirmation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
         String itemID = getIntent().getStringExtra("ID");
+        Context context = getApplicationContext();
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                "iconsPref", Context.MODE_PRIVATE);
+        String room = "225";
 
-        String html = "<h1>testing</h1><hr><a href='"+itemID+"'>ID</a>";
+        String html = "<h1>Incoming order from Room 220</h1><p>Request: 1 Mac charger</p><p>Date: 5:30 PM Jan 24, 2021</p><a href='https://iconsportal.netlify.app/response?info={id:["+itemID+"],date:Date().toString(),room:`"+room+"`,mail:`"+sharedPref.getString("mail",null)+"`' >Click to accept order on the iCons Portal</a>";
 
         RequestQueue rq = Volley.newRequestQueue(this);
-        String url = "https://allpurpose.netlify.app/.netlify/functions/email?s=New%20Order&h="+html+"";
+        String url = "https://allpurpose.netlify.app/.netlify/functions/email?s=Incoming%20Order&h="+html+"";
         StringRequest sr = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //This code is executed if the server responds, whether or not the response contains data.
-                Snackbar result;
-                if (response.toString().equals("success")){
-                    result = Snackbar.make(findViewById(android.R.id.content), "Order sent, check your email soon to see if your order was accepted", Snackbar.LENGTH_SHORT);
-                    result.show();
-                    Intent back = new Intent(getApplicationContext(), ItemList.class);
-                    startActivity(back);
-                } else {
-                    result = Snackbar.make(findViewById(android.R.id.content), "Error sending request. Check your network connection and try again", Snackbar.LENGTH_SHORT);
-                    result.show();
-                }
+                Intent back = new Intent(getApplicationContext(), ItemList.class);
+                back.putExtra("confirmed", response.toString().equals("success"));
+                startActivity(back);
             }
         }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
             @Override
@@ -56,7 +55,8 @@ public class Confirmation extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            rq.add(sr);
+                confirm.setEnabled(false);
+                rq.add(sr);
 
             }
         });

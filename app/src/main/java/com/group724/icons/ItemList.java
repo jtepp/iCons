@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -31,6 +32,19 @@ public class ItemList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String category = getIntent().getStringExtra("CATEGORY");
+
+        if (getIntent().getExtras().containsKey("confirmed")){
+            Snackbar result;
+            if (getIntent().getStringExtra("confirmed").equals("success")){
+                result = Snackbar.make(findViewById(android.R.id.content), "Order sent, check your email soon to see if your order was accepted", Snackbar.LENGTH_SHORT);
+                result.show();
+
+            } else {
+                result = Snackbar.make(findViewById(android.R.id.content), "Error sending request. Check your network connection and try again", Snackbar.LENGTH_SHORT);
+                result.show();
+            }
+        }
+
         setContentView(R.layout.activity_item_list);
         List<Item> items = new ArrayList<Item>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
