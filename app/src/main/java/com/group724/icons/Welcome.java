@@ -30,7 +30,7 @@ import android.widget.Button;
 import java.util.Map;
 
 public class Welcome extends AppCompatActivity  {
-    FirebaseAuth firebaseAuth;
+        FirebaseAuth firebaseAuth;
     OAuthProvider.Builder provider = OAuthProvider.newBuilder("microsoft.com");
 
     void signIn(){
@@ -158,5 +158,9 @@ public class Welcome extends AppCompatActivity  {
 //        }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+
     }
 }
