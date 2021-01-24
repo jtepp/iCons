@@ -46,7 +46,9 @@ public class ItemInfo extends AppCompatActivity {
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ItemInfo.this, Confirmation.class));
+                Intent in = new Intent(ItemInfo.this, Confirmation.class);
+                in.putExtra("ID", itemID);
+                startActivity(in);
                 overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);
             }
         });
