@@ -119,14 +119,6 @@ public class Welcome extends AppCompatActivity  {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-    Button skip = findViewById(R.id.skip);
-    skip.setOnClickListener(new View.OnClickListener(){
-        @Override
-        public void onClick(View v) {
-            Intent i = new Intent(Welcome.this, CategoryPicking.class);
-            startActivity(i);
-        }
-        });
         Context context = getApplicationContext();
         SharedPreferences sharedPref = context.getSharedPreferences(
                 "iconsPref", Context.MODE_PRIVATE);

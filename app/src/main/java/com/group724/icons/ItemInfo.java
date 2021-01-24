@@ -34,7 +34,7 @@ public class ItemInfo extends AppCompatActivity {
              name.setText(item.getName());
              category.setText(item.getCategory());
              remaining.setText(item.getAvailable()+" remaining");
-             if (item.getAvailable() == 0) {
+             if (item.getAvailable() > 0) {
                  request.setEnabled(false);
              } else {
                  request.setEnabled(true);

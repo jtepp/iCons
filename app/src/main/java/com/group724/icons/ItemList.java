@@ -33,17 +33,17 @@ public class ItemList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         String category = getIntent().getStringExtra("CATEGORY");
 
-        if (getIntent().getExtras().containsKey("confirmed")){
-            Snackbar result;
-            if (getIntent().getStringExtra("confirmed").equals("success")){
-                result = Snackbar.make(findViewById(android.R.id.content), "Order sent, check your email soon to see if your order was accepted", Snackbar.LENGTH_SHORT);
-                result.show();
-
-            } else {
-                result = Snackbar.make(findViewById(android.R.id.content), "Error sending request. Check your network connection and try again", Snackbar.LENGTH_SHORT);
-                result.show();
-            }
-        }
+//        if (getIntent().getExtras().containsKey("confirmed")){
+//            Snackbar result;
+//            if (response.toString().equals("success")){
+//                result = Snackbar.make(findViewById(android.R.id.content), "Order sent, check your email soon to see if your order was accepted", Snackbar.LENGTH_SHORT);
+//                result.show();
+//
+//            } else {
+//                result = Snackbar.make(findViewById(android.R.id.content), "Error sending request. Check your network connection and try again", Snackbar.LENGTH_SHORT);
+//                result.show();
+//            }
+//        }
 
         setContentView(R.layout.activity_item_list);
         List<Item> items = new ArrayList<Item>();

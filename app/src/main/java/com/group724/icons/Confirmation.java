@@ -39,9 +39,10 @@ public class Confirmation extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 //This code is executed if the server responds, whether or not the response contains data.
-                Intent back = new Intent(getApplicationContext(), ItemList.class);
-                back.putExtra("confirmed", response);
-                startActivity(back);
+                    Intent back = new Intent(getApplicationContext(), CategoryPicking.class);
+                    back.putExtra("response", response);
+                    startActivity(back);
+
             }
         }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
             @Override

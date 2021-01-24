@@ -30,7 +30,17 @@ public class CategoryPicking extends AppCompatActivity {
             Snackbar welc = Snackbar.make(findViewById(android.R.id.content), "Welcome, " + e.getString("NAME"), Snackbar.LENGTH_LONG);
             welc.show();
         }
+        if (e.containsKey("response")){
+            Snackbar result;
+            if (e.getString("response").equals("success")){
+                result = Snackbar.make(findViewById(android.R.id.content), "Order sent, check your email soon to see if your order was accepted", Snackbar.LENGTH_SHORT);
+                result.show();
 
+            } else {
+                result = Snackbar.make(findViewById(android.R.id.content), "Error sending request. Check your network connection and try again", Snackbar.LENGTH_SHORT);
+                result.show();
+            }
+        }
 
         TextView categoryHeader = findViewById(R.id.categoryHeader);
         categoryHeader.setTypeface(null, Typeface.BOLD);
