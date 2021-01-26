@@ -55,6 +55,7 @@ public class ItemInfo extends AppCompatActivity {
             public void onClick(View v) {
                 Intent in = new Intent(ItemInfo.this, Confirmation.class);
                 in.putExtra("ID", itemID);
+                in.putExtra("itemName", name.getText());
                 startActivity(in);
                 overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);
             }
