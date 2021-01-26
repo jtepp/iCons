@@ -37,7 +37,7 @@ public class Confirmation extends AppCompatActivity {
 
         String req = getIntent().getStringExtra("itemName");
 
-        String html = "<h1>Incoming order from Room 220</h1><p>Request: "+req+"</p><p>Date: 5:30 PM Jan 24, 2021</p><a href='https://iconsportal.netlify.app/response?id=[\""+itemID+"\"]%26date="+d.toString()+"%26room="+room+"%26mail="+sharedPref.getString("mail",null)+"%26name="+sharedPref.getString("name",null)+"'>Click to accept order on the iCons Portal</a>";
+        String html = "<h1>Incoming order from Room 220</h1><p>From: "+sharedPref.getString("name",null)+"</p><p>Request: <b>"+req+"</b></p><p>Date: "+d.toString()+"</p><a href='https://iconsportal.netlify.app/response?id=[\""+itemID+"\"]%26date="+d.toString()+"%26room="+room+"%26mail="+sharedPref.getString("mail",null)+"%26name="+sharedPref.getString("name",null)+"'>Click to accept order on the iCons Portal</a>";
 
 
         RequestQueue rq = Volley.newRequestQueue(this);
