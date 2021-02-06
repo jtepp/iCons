@@ -14,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -36,12 +37,18 @@ public class Confirmation extends AppCompatActivity {
 
 
         String req = getIntent().getStringExtra("itemName");
-
-        String html = "<h1>Incoming order from Room 220</h1><p>From: "+sharedPref.getString("name",null)+"</p><p>Request: <b>"+req+"</b></p><p>Date: "+d.toString()+"</p><a href='https://iconsportal.netlify.app/response?id=[\""+itemID+"\"]%26date="+d.toString()+"%26room="+room+"%26mail="+sharedPref.getString("mail",null)+"%26name="+sharedPref.getString("name",null)+"'>Click to accept order on the iCons Portal</a>";
+        String dn = sharedPref.getString("name", "");
+        String em = sharedPref.getString("mail", "");
+        String html = "&h=<h1>Incoming order from Room "+room+"</h1><p>From: "+dn;
+        html += "</p><p>Request: <b>"+itemNQ()+"</b></p><p>Date: "+d;
+        html += "</p><a href='https://iconsportal.netlify.app/response?id=["+itemIDs()+"]%26quantities=["+sharedPref.getString("cartq","")+"]%26date="+d;
+        html += "%26room="+room+"%26mail="+em;
+        html += "%26name="+dn;
+        html += "'>Click to accept order on the iCons Portal</a>";
+        String url = "https://iconsportal.netlify.app/.netlify/functions/email?s=Order from room "+room+html;
 
 
         RequestQueue rq = Volley.newRequestQueue(this);
-        String url = "https://iconsportal.netlify.app/.netlify/functions/email?s=Order%20from%20room%20"+room+"&h="+html+"";
         StringRequest sr = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -49,6 +56,8 @@ public class Confirmation extends AppCompatActivity {
                     Intent back = new Intent(getApplicationContext(), CategoryPicking.class);
                     back.putExtra("response", response);
                     startActivity(back);
+
+
 
             }
         }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
@@ -65,8 +74,50 @@ public class Confirmation extends AppCompatActivity {
             public void onClick(View v) {
                 confirm.setEnabled(false);
                 rq.add(sr);
+                Context context = getApplicationContext();
+                SharedPreferences sharedPref = (context.getSharedPreferences("iconsPref", Context.MODE_PRIVATE));
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("cartid", "");
+                editor.putString("cartname", "");
+                editor.putString("cartq", "");
+                editor.apply();
+
 
             }
         });
+    }
+    String join(String[] input){
+        if (input.length > 0) {
+            String out = "";
+            for (String s : input) {
+                out += s + ",";
+            }
+            return out.substring(0, (out.length() == 0 ? out.length() : out.length() - 1));
+        } return "";
+    }
+    String itemNQ(){
+        String out = "";
+        Context context = getApplicationContext();
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                "iconsPref", Context.MODE_PRIVATE);
+        String[] cartid = sharedPref.getString("cartid","").split(",");
+        String[] cartname = sharedPref.getString("cartname","").split(",");
+        String[] cartq = sharedPref.getString("cartq","").split(",");
+        for (int i = 0; i<cartid.length; i++){
+            out += cartname[i]+" x"+cartq[i]+", ";
+        }
+        return out.substring(0, out.length()-2);
+    }
+    String itemIDs(){
+        String out = "";
+        Context context = getApplicationContext();
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                "iconsPref", Context.MODE_PRIVATE);
+        String[] cartid = sharedPref.getString("cartid","").split(",");
+        String[] preout = cartid.clone();
+        for (int i = 0; i<cartid.length; i++){
+            preout[i] = "\""+cartid[i]+"\"";
+        }
+        return join(preout);
     }
 }

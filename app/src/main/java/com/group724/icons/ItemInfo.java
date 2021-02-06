@@ -121,7 +121,7 @@ public class ItemInfo extends AppCompatActivity {
                                 String[] acartq = cartq.split(",");
 
                                 Integer index = Arrays.asList(acartid).indexOf(doc.getId());
-                                acartq[index] = String.valueOf(quantityText.getText());
+                                acartq[index] = String.valueOf(Integer.parseInt(String.valueOf(quantityText.getText())));
                                 editor.putString("cartq", join(acartq));
 
 
@@ -132,7 +132,7 @@ public class ItemInfo extends AppCompatActivity {
                                 String[] acartq = cartq.split(",");
                                 editor.putString("cartid", joinAdd(acartid, doc.getId()));
                                 editor.putString("cartname", joinAdd(acartname, item.getName()));
-                                editor.putString("cartq", joinAdd(acartq, String.valueOf(quantityText.getText())));
+                                editor.putString("cartq", joinAdd(acartq, String.valueOf(Integer.parseInt(String.valueOf(quantityText.getText())))));
                                 editor.apply();
 
                             }
@@ -171,7 +171,7 @@ public class ItemInfo extends AppCompatActivity {
             for (String s : input) {
                 out += s + ",";
             }
-            return out.substring(0, out.length() - 1);
+            return out.substring(0, (out.length() == 0 ? out.length() : out.length() - 1));
         } return "";
     }
 
