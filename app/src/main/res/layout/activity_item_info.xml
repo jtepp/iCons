@@ -69,10 +69,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
         android:layout_marginLeft="68dp"
+        android:layout_marginBottom="26dp"
         android:text="Quantity to order:"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="589dp" />
+        app:layout_constraintBottom_toTopOf="@+id/req"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/quantityText"
@@ -80,8 +81,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        tools:layout_editor_absoluteY="579dp" />
+        app:layout_constraintBottom_toTopOf="@+id/req"
+        app:layout_constraintStart_toEndOf="@+id/textView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -42,7 +43,7 @@ public class ItemInfo extends AppCompatActivity {
                 name.setText(item.getName());
                 category.setText(item.getCategory());
                 remaining.setText(item.getAvailable()+" remaining");
-                if (item.getAvailable() > 0 && Integer.parseInt(String.valueOf(quantityText.getText())) > 0 && Integer.parseInt(String.valueOf(quantityText.getText())) < item.getAvailable()) {
+                if (item.getAvailable() > 0) {
                     request.setEnabled(true);
                 } else {
                     request.setEnabled(false);
@@ -55,8 +56,17 @@ public class ItemInfo extends AppCompatActivity {
 
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if (item.getAvailable() > 0 && Integer.parseInt(String.valueOf(quantityText.getText())) > 0 && Integer.parseInt(String.valueOf(quantityText.getText())) < item.getAvailable()) {
-                            request.setEnabled(true);
+                        if (item.getAvailable() > 0 && !String.valueOf(quantityText.getText()).equalsIgnoreCase("")) {
+                            try {
+                                Integer num = Integer.parseInt(String.valueOf(quantityText.getText()));
+                                if (Integer.parseInt(String.valueOf(quantityText.getText())) > 0 && Integer.parseInt(String.valueOf(quantityText.getText())) < item.getAvailable()) {
+                                    request.setEnabled(true);
+                                }
+                            } catch (Error e) {
+                                Log.d("ERROR", e.toString());
+                                request.setEnabled(false);
+                            }
+
                         } else {
                             request.setEnabled(false);
                         }
