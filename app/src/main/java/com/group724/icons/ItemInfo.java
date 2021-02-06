@@ -3,8 +3,12 @@ package com.group724.icons;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -28,7 +32,8 @@ public class ItemInfo extends AppCompatActivity {
         String itemID = getIntent().getStringExtra("ID");
         TextView name = findViewById(R.id.itemName), category = findViewById(R.id.itemCategory), remaining = findViewById(R.id.remaining);
         Button request = findViewById(R.id.req);
-
+        TextView quantityText = findViewById(R.id.quantityText);
+        quantityText.setText("0");
         ref.document("items/"+itemID).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot doc, @Nullable FirebaseFirestoreException error) {
@@ -37,11 +42,31 @@ public class ItemInfo extends AppCompatActivity {
                 name.setText(item.getName());
                 category.setText(item.getCategory());
                 remaining.setText(item.getAvailable()+" remaining");
-                if (item.getAvailable() <= 0) {
-                    request.setEnabled(false);
-                } else {
+                if (item.getAvailable() > 0 && Integer.parseInt(String.valueOf(quantityText.getText())) > 0 && Integer.parseInt(String.valueOf(quantityText.getText())) < item.getAvailable()) {
                     request.setEnabled(true);
+                } else {
+                    request.setEnabled(false);
                 }
+                quantityText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (item.getAvailable() > 0 && Integer.parseInt(String.valueOf(quantityText.getText())) > 0 && Integer.parseInt(String.valueOf(quantityText.getText())) < item.getAvailable()) {
+                            request.setEnabled(true);
+                        } else {
+                            request.setEnabled(false);
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
             }
         });
 
@@ -53,11 +78,17 @@ public class ItemInfo extends AppCompatActivity {
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(ItemInfo.this, Confirmation.class);
-                in.putExtra("ID", itemID);
-                in.putExtra("itemName", name.getText());
-                startActivity(in);
-                overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);
+                Context context = getApplicationContext();
+                SharedPreferences sharedPref = context.getSharedPreferences(
+                        "iconsPref", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+//                sharedPref.get
+
+//                Intent in = new Intent(ItemInfo.this, Confirmation.class);
+//                in.putExtra("ID", itemID);
+//                in.putExtra("itemName", name.getText());
+//                startActivity(in);
+//                overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);
             }
         });
     }
