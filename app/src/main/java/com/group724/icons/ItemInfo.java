@@ -115,21 +115,26 @@ public class ItemInfo extends AppCompatActivity {
                             String cartname = sharedPref.getString("cartname", "");
                             String cartq = sharedPref.getString("cartq", "");
 
-                            if (cartid.contains(itemID)) {
+                            if (cartid.contains(doc.getId())) {
                                 String[] acartid = cartid.split(",");
 //                            String[] acartname = cartname.split(",");
                                 String[] acartq = cartq.split(",");
 
-                                Integer index = Arrays.asList(acartid).indexOf(itemID);
+                                Integer index = Arrays.asList(acartid).indexOf(doc.getId());
                                 acartq[index] = String.valueOf(quantityText.getText());
                                 editor.putString("cartq", join(acartq));
+
+
+
                             } else {
                                 String[] acartid = cartid.split(",");
                                 String[] acartname = cartname.split(",");
                                 String[] acartq = cartq.split(",");
-                                editor.putString("cartid", joinAdd(acartq, itemID));
+                                editor.putString("cartid", joinAdd(acartid, doc.getId()));
                                 editor.putString("cartname", joinAdd(acartname, item.getName()));
-                                editor.putString("cartq", joinAdd(acartq, String.valueOf(item.getAvailable())));
+                                editor.putString("cartq", joinAdd(acartq, String.valueOf(quantityText.getText())));
+                                editor.apply();
+
                             }
 
                             Snackbar snack = Snackbar.make(findViewById(android.R.id.content), ("Cart now contains " + item.getName() + " x" + String.valueOf(num)), Snackbar.LENGTH_LONG);

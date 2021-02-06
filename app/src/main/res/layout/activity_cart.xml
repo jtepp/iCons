@@ -24,22 +24,25 @@
         android:layout_height="match_parent"
         android:layout_marginTop="150dp"
         android:layout_marginBottom="100dp"
+        android:foregroundGravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/cardLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <!-- A CardView that contains a TextView -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_view"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_width="900px"
+                android:layout_height="140px"
                 android:layout_gravity="center"
-                android:layout_margin="40dp"
+                android:layout_margin="50px"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="4dp"
                 app:contentPadding="10dp">
@@ -56,17 +59,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|center_vertical"
-                    android:layout_marginEnd="40"
-                    android:layout_marginRight="40"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginRight="40dp"
                     android:ellipsize="none"
                     android:gravity="right"
                     android:text="Hello" />
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="19dp"
+                    android:layout_width="23dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
+                    android:padding="0dp"
                     app:srcCompat="@drawable/trash" />
 
             </androidx.cardview.widget.CardView>

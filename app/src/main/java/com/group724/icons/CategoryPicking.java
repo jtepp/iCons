@@ -110,6 +110,7 @@ public class CategoryPicking extends AppCompatActivity {
                 editor.putString("cartid", "");
                 editor.putString("cartname", "");
                 editor.putString("cartq", "");
+                editor.apply();
             }
         });
 
