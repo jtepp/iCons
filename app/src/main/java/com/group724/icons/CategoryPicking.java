@@ -45,6 +45,16 @@ public class CategoryPicking extends AppCompatActivity {
         TextView categoryHeader = findViewById(R.id.categoryHeader);
         categoryHeader.setTypeface(null, Typeface.BOLD);
 
+
+        FloatingActionButton cart = findViewById(R.id.toCartcategorypicking);
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), Cart.class);
+                startActivity(in);
+            }
+        });
+
         Button all = findViewById(R.id.toAll);
         all.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +107,9 @@ public class CategoryPicking extends AppCompatActivity {
                 editor.apply();
                 FirebaseAuth.getInstance().signOut();
                 startActivity(in);
+                editor.putString("cartid", "");
+                editor.putString("cartname", "");
+                editor.putString("cartq", "");
             }
         });
 

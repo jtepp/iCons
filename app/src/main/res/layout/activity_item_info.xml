@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".ItemInfo">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/toCartiteminfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginBottom="96dp"
+        android:clickable="true"
+        app:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/cart" />
+
     <TextView
         android:id="@+id/itemName"
         android:layout_width="wrap_content"
@@ -55,7 +68,7 @@
         android:lineSpacingExtra="30sp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:text="Request"
+        android:text="Add to cart"
         android:textAllCaps="true"
         android:textSize="30sp"
         android:textStyle="bold"

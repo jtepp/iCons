@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -49,6 +50,16 @@ public class ItemList extends AppCompatActivity {
         List<Item> items = new ArrayList<Item>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         LinearLayout itemLayout = findViewById(R.id.scrollLayout);
+
+        FloatingActionButton cart = findViewById(R.id.toCartitemlist);
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), Cart.class);
+                startActivity(in);
+            }
+        });
+
         ref.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
