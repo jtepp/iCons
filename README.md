@@ -9,4 +9,6 @@ As part of the APSC 100/103 course, our group was tasked with creating a more ef
 
 We produced this Android app, as well as an [iOS app](https://github.com/jtepp/iCons-iOS/) for use by all Queen's students.
 
-The iCons site can be found [here](https://icon.engsoc.queensu.ca/)
+We also created a [staff portal](https://github.com/jtepp/iconsportal) for managing the inventory and staff list.
+
+The iCons site can be found [here](https://icon.engsoc.queensu.ca/).
