@@ -38,25 +38,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
-        <LinearLayout
-            android:id="@+id/scrollLayout"
+        <com.group724.icons.AnimatedExpandableListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/itemLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"></LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:id="@+id/itemExpandableListView"/>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
