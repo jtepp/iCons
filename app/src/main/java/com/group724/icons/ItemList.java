@@ -7,34 +7,18 @@ import java.util.List;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.group724.icons.AnimatedExpandableListView;
-import com.group724.icons.AnimatedExpandableListView.AnimatedExpandableListAdapter;
-
 import android.os.Bundle;
-import android.app.Activity;
-import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.TextView;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -47,49 +31,32 @@ public class ItemList extends AppCompatActivity {
 
     CollectionReference ref = FirebaseFirestore.getInstance().collection("items");
 
-    private AnimatedExpandableListView listView;
-    private ExampleAdapter adapter;
+    ExpandableListView expandableListView;
+    ArrayList<String> listGroup = new ArrayList<>();
+    HashMap<String, ArrayList<String>> listChild = new HashMap<>();
+    MainAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_item_list);
         String category = getIntent().getStringExtra("CATEGORY");
 
-        List<GroupItem> items = new ArrayList<GroupItem>();
+        expandableListView = findViewById(R.id.itemExpandableListView);
 
-        for(int i = 1; i < 100; i++) {
-            GroupItem item = new GroupItem();
+        for (int g=0; g<=10; g++) {
+            listGroup.add("Group "+g);
 
-            item.title = "Group " + i;
-
-            for(int j = 0; j < i; j++) {
-                ChildItem child = new ChildItem();
-                child.title = "Awesome item " + j;
-                child.hint = "Too awesome";
-
-                item.items.add(child);
+            ArrayList<String> arrayList = new ArrayList<>();
+            for (int c=0; c<=5; c++){
+                arrayList.add("Item "+c);
             }
-
-            items.add(item);
+            listChild.put(listGroup.get(g), arrayList);
         }
 
-        adapter = new ExampleAdapter(this);
-        adapter.setData(items);
+        adapter = new MainAdapter(listGroup, listChild);
 
-        listView = (AnimatedExpandableListView) findViewById(R.id.itemExpandableListView);
-        listView.setAdapter(adapter);
-
-        listView.setOnGroupClickListener(new OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                if (listView.isGroupExpanded(groupPosition)) {
-                    listView.collapseGroupWithAnimation(groupPosition);
-                } else {
-                    listView.expandGroupWithAnimation(groupPosition);
-                }
-                return true;
-            }
-        });
+        expandableListView.setAdapter(adapter);
 
 
 //        if (getIntent().getExtras().containsKey("confirmed")){
@@ -104,8 +71,8 @@ public class ItemList extends AppCompatActivity {
 //            }
 //        }
 
-        setContentView(R.layout.activity_item_list);
 
+//        List<Item> items = new ArrayList<Item>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 //        LinearLayout itemLayout = findViewById(R.id.scrollLayout);
 
@@ -158,118 +125,5 @@ public class ItemList extends AppCompatActivity {
         });
         return btn;
     }
-
-    private static class GroupItem {
-        String title;
-        List<ChildItem> items = new ArrayList<ChildItem>();
-    }
-
-    private static class ChildItem {
-        String title;
-        String hint;
-    }
-
-    private static class ChildHolder {
-        TextView title;
-        TextView hint;
-    }
-
-    private static class GroupHolder {
-        TextView title;
-    }
-
-    private class ExampleAdapter extends AnimatedExpandableListAdapter {
-        private LayoutInflater inflater;
-
-        private List<GroupItem> items;
-
-        public ExampleAdapter(Context context) {
-            inflater = LayoutInflater.from(context);
-        }
-
-        public void setData(List<GroupItem> items) {
-            this.items = items;
-        }
-
-        @Override
-        public ChildItem getChild(int groupPosition, int childPosition) {
-            return items.get(groupPosition).items.get(childPosition);
-        }
-
-        @Override
-        public long getChildId(int groupPosition, int childPosition) {
-            return childPosition;
-        }
-
-        @Override
-        public View getRealChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-            ChildHolder holder;
-            ChildItem item = getChild(groupPosition, childPosition);
-            if (convertView == null) {
-                holder = new ChildHolder();
-//                convertView = inflater.inflate(R.layout.list_item, parent, false);
-//                holder.title = (TextView) convertView.findViewById(R.id.textTitle);
-//                holder.hint = (TextView) convertView.findViewById(R.id.textHint);
-                convertView.setTag(holder);
-            } else {
-                holder = (ChildHolder) convertView.getTag();
-            }
-
-            holder.title.setText(item.title);
-            holder.hint.setText(item.hint);
-
-            return convertView;
-        }
-
-        @Override
-        public int getRealChildrenCount(int groupPosition) {
-            return items.get(groupPosition).items.size();
-        }
-
-        @Override
-        public GroupItem getGroup(int groupPosition) {
-            return items.get(groupPosition);
-        }
-
-        @Override
-        public int getGroupCount() {
-            return items.size();
-        }
-
-        @Override
-        public long getGroupId(int groupPosition) {
-            return groupPosition;
-        }
-
-        @Override
-        public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-            GroupHolder holder;
-            GroupItem item = getGroup(groupPosition);
-            if (convertView == null) {
-                holder = new GroupHolder();
-//                convertView = inflater.inflate(R.layout.group_item, parent, false);
-//                holder.title = (TextView) convertView.findViewById(R.id.textTitle);
-                convertView.setTag(holder);
-            } else {
-                holder = (GroupHolder) convertView.getTag();
-            }
-
-            holder.title.setText(item.title);
-
-            return convertView;
-        }
-
-        @Override
-        public boolean hasStableIds() {
-            return true;
-        }
-
-        @Override
-        public boolean isChildSelectable(int arg0, int arg1) {
-            return true;
-        }
-
-    }
-
 }
 
