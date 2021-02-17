@@ -126,22 +126,23 @@ public class ItemList extends AppCompatActivity {
 
     void refreshELV(ArrayList<String> subs, ArrayList<Item> allItems){
         ArrayList<String> listGroup = new ArrayList<>();
-        HashMap<String, ArrayList<String>> listChild = new HashMap<>();
+        HashMap<String, ArrayList<Item>> listChild = new HashMap<>();
 
+        ItemList context = ItemList.this;
 
         for (int g=0; g<subs.size(); g++) {
             listGroup.add(subs.get(g));
 
-            ArrayList<String> arrayList = new ArrayList<>();
+            ArrayList<Item> arrayList = new ArrayList<>();
             for (int c=0; c<allItems.size(); c++){
                 if (allItems.get(c).getSub().equalsIgnoreCase(subs.get(g))) {
-                    arrayList.add("\t"+allItems.get(c).getName()+" | "+allItems.get(c).getAvailable()+" remaining");
+                    arrayList.add(allItems.get(c));
                 }
             }
             listChild.put(listGroup.get(g), arrayList);
         }
 
-        adapter = new MainAdapter(listGroup, listChild);
+        adapter = new MainAdapter(context, listGroup, listChild);
 
         expandableListView.setAdapter(adapter);
     }

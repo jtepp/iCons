@@ -3,7 +3,6 @@ package com.group724.icons;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +15,13 @@ import java.util.HashMap;
 import static androidx.core.content.ContextCompat.startActivity;
 
 public class MainAdapter extends BaseExpandableListAdapter {
-
+    ItemList context;
     ArrayList<String> listGroup;
-    HashMap<String, ArrayList<String>> listChild;
+    HashMap<String, ArrayList<Item>> listChild;
 
 
-    public MainAdapter(ArrayList<String> listGroup, HashMap<String ,ArrayList<String>> listChild){
+    public MainAdapter(ItemList context, ArrayList<String> listGroup, HashMap<String ,ArrayList<Item>> listChild){
+        this.context = context;
         this.listGroup = listGroup;
         this.listChild = listChild;
     }
@@ -83,16 +83,16 @@ public class MainAdapter extends BaseExpandableListAdapter {
                 .inflate(android.R.layout.simple_selectable_list_item, parent, false);
 
         TextView textView = convertView.findViewById(android.R.id.text1);
-        String sChild = String.valueOf(getChild(groupPosition,childPosition));
-
-        textView.setText(sChild);
+        Item i = (Item) getChild(groupPosition,childPosition);
+        textView.setText(i.getName()+" | "+i.getAvailable()+" remaining");
+        textView.setPadding(100,0,0,0);
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent move = new Intent(ItemList.this, ItemInfo.class);
+                Intent move = new Intent(context, ItemInfo.class);
                 move.putExtra("ID",i.getID());
-                startActivity(move);
+                startActivity(context, move, null);
             }
         });
 
