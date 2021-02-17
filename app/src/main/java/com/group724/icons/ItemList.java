@@ -6,6 +6,22 @@ import java.util.List;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.group724.icons.AnimatedExpandableListView;
+import com.group724.icons.AnimatedExpandableListView.AnimatedExpandableListAdapter;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnGroupClickListener;
+import android.widget.TextView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -75,24 +91,6 @@ public class ItemList extends AppCompatActivity {
                 }
             }
         });
-//        db.collection("items")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()){
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//
-//                                Item doc = document.toObject(Item.class);
-////                                Log.d("TAG", document.getId() + " => " + doc);
-//                                itemLayout.addView(returnBtn(doc));
-//                            }
-//
-//                        } else {
-//                            Log.w("TAG", "Error getting documents.", task.getException());
-//                        }
-//                    }
-//                });
 
 
 
