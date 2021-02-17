@@ -1,5 +1,6 @@
 package com.group724.icons;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.Log;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static androidx.core.content.ContextCompat.startActivity;
 
 public class MainAdapter extends BaseExpandableListAdapter {
 
@@ -87,7 +90,9 @@ public class MainAdapter extends BaseExpandableListAdapter {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("CLICK", "CLICKED ON "+sChild);
+                Intent move = new Intent(ItemList.this, ItemInfo.class);
+                move.putExtra("ID",i.getID());
+                startActivity(move);
             }
         });
 

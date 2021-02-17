@@ -32,8 +32,7 @@ public class ItemList extends AppCompatActivity {
     CollectionReference ref = FirebaseFirestore.getInstance().collection("items");
 
     ExpandableListView expandableListView;
-    ArrayList<String> listGroup = new ArrayList<>();
-    HashMap<String, ArrayList<String>> listChild = new HashMap<>();
+
     MainAdapter adapter;
 
     @Override
@@ -44,19 +43,6 @@ public class ItemList extends AppCompatActivity {
 
         expandableListView = findViewById(R.id.itemExpandableListView);
 
-        for (int g=0; g<=10; g++) {
-            listGroup.add("Group "+g);
-
-            ArrayList<String> arrayList = new ArrayList<>();
-            for (int c=0; c<=5; c++){
-                arrayList.add("Item "+c);
-            }
-            listChild.put(listGroup.get(g), arrayList);
-        }
-
-        adapter = new MainAdapter(listGroup, listChild);
-
-        expandableListView.setAdapter(adapter);
 
 
 //        if (getIntent().getExtras().containsKey("confirmed")){
@@ -88,16 +74,28 @@ public class ItemList extends AppCompatActivity {
         ref.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//                itemLayout.removeAllViews();
+
+                ArrayList<String> subs = new ArrayList<>();
+                ArrayList<Item> allItems = new ArrayList<>();
+
                 for (DocumentSnapshot d : value.getDocuments()){
 //                    Log.d("Document", d.getData().toString());
                     if (d.getString("category").equalsIgnoreCase(category) || category.equalsIgnoreCase("all")) {
                         Item doc = d.toObject(Item.class);
                         doc.setID(d.getId());
-                        Log.d("TAG", d.getId() + " => " + doc);
-//                        itemLayout.addView(returnBtn(doc));
+
+                        allItems.add(doc);
+
+                        if (!subs.contains(doc.getSub())) {
+                            subs.add(doc.getSub());
+                        }
+//                        Log.d("TAG", d.getId() + " => " + doc);
+
+
+
                     }
                 }
+                refreshELV(subs, allItems);
             }
         });
 
@@ -124,6 +122,28 @@ public class ItemList extends AppCompatActivity {
             }
         });
         return btn;
+    }
+
+    void refreshELV(ArrayList<String> subs, ArrayList<Item> allItems){
+        ArrayList<String> listGroup = new ArrayList<>();
+        HashMap<String, ArrayList<String>> listChild = new HashMap<>();
+
+
+        for (int g=0; g<subs.size(); g++) {
+            listGroup.add(subs.get(g));
+
+            ArrayList<String> arrayList = new ArrayList<>();
+            for (int c=0; c<allItems.size(); c++){
+                if (allItems.get(c).getSub().equalsIgnoreCase(subs.get(g))) {
+                    arrayList.add("\t"+allItems.get(c).getName()+" | "+allItems.get(c).getAvailable()+" remaining");
+                }
+            }
+            listChild.put(listGroup.get(g), arrayList);
+        }
+
+        adapter = new MainAdapter(listGroup, listChild);
+
+        expandableListView.setAdapter(adapter);
     }
 }
 
