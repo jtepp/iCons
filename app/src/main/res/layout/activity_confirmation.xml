@@ -7,20 +7,59 @@
     android:background="@color/green"
     tools:context=".Confirmation">
 
-    <Button
-        android:id="@+id/confirm"
+    <ImageView
+        android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="155dp"
-        android:layout_marginLeft="155dp"
-        android:layout_marginTop="341dp"
-        android:layout_marginEnd="155dp"
-        android:layout_marginRight="155dp"
-        android:layout_marginBottom="342dp"
-        android:text="Confirm"
-        app:backgroundTint="#0BD374"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/confirmpage" />
+
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="217dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="341dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text=""
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.875" />
+
+    <EditText
+        android:id="@+id/RoomNumber"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="number"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.597" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="241dp"
+        android:layout_height="71dp"
+        android:fontFamily="sans-serif-black"
+        android:text="WHAT IS YOUR ROOM NUMBER?"
+        android:textColor="@color/blue"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.479" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
