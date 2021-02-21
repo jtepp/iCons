@@ -111,4 +111,7 @@
     </string>
     <string name="title_activity_item_list">ScrollingActivity</string>
     <string name="title_activity_item_info">ItemInfo</string>
+    <string name="background">Background</string>
+    <string name="options">.options</string>
+    <string name="button">Button</string>
 </resources>
