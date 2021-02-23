@@ -8,8 +8,6 @@ import android.os.Bundle;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.OAuthProvider;
@@ -17,8 +15,6 @@ import com.google.firebase.auth.OAuthProvider;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.multidex.MultiDex;
-import androidx.multidex.MultiDexApplication;
 
 import android.util.Log;
 import android.view.View;
@@ -29,7 +25,7 @@ import android.widget.Button;
 
 import java.util.Map;
 
-public class Welcome extends AppCompatActivity  {
+public class Main extends AppCompatActivity  {
         FirebaseAuth firebaseAuth;
     OAuthProvider.Builder provider = OAuthProvider.newBuilder("microsoft.com");
 
@@ -70,7 +66,7 @@ public class Welcome extends AppCompatActivity  {
                             public void onSuccess(AuthResult authResult) {
                                 Map<String, Object> p = authResult.getAdditionalUserInfo().getProfile();
                                 Log.d("BOTTOM SUCCESS", "success");
-                                Intent i = new Intent(Welcome.this, CategoryPicking.class);
+                                Intent i = new Intent(Main.this, CategoryPicking.class);
                                 i.putExtra("NAME", p.get("displayName").toString());
 
                                 Context context = getApplicationContext();
@@ -123,7 +119,7 @@ public class Welcome extends AppCompatActivity  {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 "iconsPref", Context.MODE_PRIVATE);
     if (sharedPref.getString("name", null) != null) {
-        Intent i = new Intent(Welcome.this, CategoryPicking.class);
+        Intent i = new Intent(Main.this, CategoryPicking.class);
         i.putExtra("NAME", sharedPref.getString("name", null));
         startActivity(i);
     }

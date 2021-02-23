@@ -114,25 +114,7 @@ public class CategoryPicking extends AppCompatActivity {
 
 
 
-//        Button signOut = findViewById(R.id.signOut);
-//        signOut.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent in = new Intent(getApplicationContext(), Welcome.class);
-//                Context context = getApplicationContext();
-//                SharedPreferences sharedPref = (context.getSharedPreferences("iconsPref", Context.MODE_PRIVATE));
-//                SharedPreferences.Editor editor = sharedPref.edit();
-//                editor.putString("mail", null);
-//                editor.putString("name", null);
-//                editor.apply();
-//                FirebaseAuth.getInstance().signOut();
-//                startActivity(in);
-//                editor.putString("cartid", "");
-//                editor.putString("cartname", "");
-//                editor.putString("cartq", "");
-//                editor.apply();
-//            }
-//        });
+
 
     }
     @Override

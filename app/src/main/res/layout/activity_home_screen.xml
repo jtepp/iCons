@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home_Screen">
+    tools:context=".HomeScreen">
 
     <ImageView
         android:id="@+id/imageView"
@@ -60,7 +60,7 @@
         app:layout_constraintVertical_bias="0.704" />
 
     <Button
-        android:id="@+id/SignoutHomeScreen"
+        android:id="@+id/signOut"
         android:layout_width="294dp"
         android:layout_height="84dp"
         android:layout_marginTop="1dp"

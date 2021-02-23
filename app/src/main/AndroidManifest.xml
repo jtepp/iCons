@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ICons">
-        <activity android:name=".Home_Screen"></activity>
+        <activity android:name=".HomeScreen"></activity>
         <activity android:name=".Cart" />
         <activity android:name=".Confirmation" />
         <activity android:name=".ItemInfo" />
@@ -21,7 +21,7 @@
             android:label="@string/title_activity_category_picking"
             android:theme="@style/Theme.ICons.NoActionBar" />
         <activity
-            android:name=".Welcome"
+            android:name=".Main"
             android:label="@string/app_name"
             android:theme="@style/Theme.ICons.NoActionBar">
             <intent-filter>
