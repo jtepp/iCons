@@ -42,18 +42,16 @@ public class CategoryPicking extends AppCompatActivity {
             }
         }
 
-        TextView categoryHeader = findViewById(R.id.categoryHeader);
-        categoryHeader.setTypeface(null, Typeface.BOLD);
 
 
-        FloatingActionButton cart = findViewById(R.id.toCartcategorypicking);
-        cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in = new Intent(getApplicationContext(), Cart.class);
-                startActivity(in);
-            }
-        });
+//        FloatingActionButton cart = findViewById(R.id.toCartcategorypicking);
+//        cart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent in = new Intent(getApplicationContext(), Cart.class);
+//                startActivity(in);
+//            }
+//        });
 
         Button all = findViewById(R.id.toAll);
         all.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +63,7 @@ public class CategoryPicking extends AppCompatActivity {
             }
         });
 
-        Button textbooks = findViewById(R.id.toText);
+        Button textbooks = findViewById(R.id.toTextbooks);
         textbooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +78,7 @@ public class CategoryPicking extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(getApplicationContext(), ItemList.class);
-                in.putExtra("CATEGORY", "Supplies");
+                in.putExtra("CATEGORY", "Office Equipment");
                 startActivity(in);
             }
         });
@@ -94,25 +92,47 @@ public class CategoryPicking extends AppCompatActivity {
             }
         });
 
-        Button signOut = findViewById(R.id.signOut);
-        signOut.setOnClickListener(new View.OnClickListener() {
+        Button workbooks = findViewById(R.id.toWorkbooks);
+        chargers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getApplicationContext(), Welcome.class);
-                Context context = getApplicationContext();
-                SharedPreferences sharedPref = (context.getSharedPreferences("iconsPref", Context.MODE_PRIVATE));
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString("mail", null);
-                editor.putString("name", null);
-                editor.apply();
-                FirebaseAuth.getInstance().signOut();
+                Intent in = new Intent(getApplicationContext(), ItemList.class);
+                in.putExtra("CATEGORY", "Workbooks");
                 startActivity(in);
-                editor.putString("cartid", "");
-                editor.putString("cartname", "");
-                editor.putString("cartq", "");
-                editor.apply();
             }
         });
+
+        Button cram = findViewById(R.id.toCram);
+        chargers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), ItemList.class);
+                in.putExtra("CATEGORY", "Course Cram Booklets");
+                startActivity(in);
+            }
+        });
+
+
+
+//        Button signOut = findViewById(R.id.signOut);
+//        signOut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent in = new Intent(getApplicationContext(), Welcome.class);
+//                Context context = getApplicationContext();
+//                SharedPreferences sharedPref = (context.getSharedPreferences("iconsPref", Context.MODE_PRIVATE));
+//                SharedPreferences.Editor editor = sharedPref.edit();
+//                editor.putString("mail", null);
+//                editor.putString("name", null);
+//                editor.apply();
+//                FirebaseAuth.getInstance().signOut();
+//                startActivity(in);
+//                editor.putString("cartid", "");
+//                editor.putString("cartname", "");
+//                editor.putString("cartq", "");
+//                editor.apply();
+//            }
+//        });
 
     }
     @Override
