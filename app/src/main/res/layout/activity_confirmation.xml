@@ -4,18 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green"
+    android:background="@drawable/confirmpage"
     tools:context=".Confirmation">
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="723dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/confirmpage" />
 
     <Button
         android:id="@+id/confirm"
@@ -24,8 +14,8 @@
         android:layout_marginTop="341dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:text=""
         android:background="@android:color/transparent"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.567"
@@ -46,20 +36,26 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.597" />
+        app:layout_constraintVertical_bias="0.564" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="241dp"
-        android:layout_height="71dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="WHAT IS YOUR ROOM NUMBER?"
+        android:text="ROOM NUMBER"
         android:textColor="@color/blue"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.479" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
