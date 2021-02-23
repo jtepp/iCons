@@ -18,7 +18,18 @@ public class HomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-                Button signOut = findViewById(R.id.signOut);
+        Button RequestItems = findViewById(R.id.RequestItems);
+        RequestItems.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), CategoryPicking.class);
+                startActivity(in);
+
+            }
+        });
+
+
+        Button signOut = findViewById(R.id.signOut);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
