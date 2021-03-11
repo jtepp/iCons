@@ -92,7 +92,7 @@ public class CategoryPicking extends AppCompatActivity {
             }
         });
         TextView cables = findViewById(R.id.toCables);
-        supplies.setOnClickListener(new View.OnClickListener() {
+        cables.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(getApplicationContext(), ItemList.class);
