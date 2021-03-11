@@ -119,7 +119,7 @@ public class Main extends AppCompatActivity  {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 "iconsPref", Context.MODE_PRIVATE);
     if (sharedPref.getString("name", null) != null) {
-        Intent i = new Intent(Main.this, CategoryPicking.class);
+        Intent i = new Intent(Main.this, HomeScreen.class);
         i.putExtra("NAME", sharedPref.getString("name", null));
         startActivity(i);
     }
