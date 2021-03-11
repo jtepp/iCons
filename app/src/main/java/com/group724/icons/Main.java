@@ -66,7 +66,7 @@ public class Main extends AppCompatActivity  {
                             public void onSuccess(AuthResult authResult) {
                                 Map<String, Object> p = authResult.getAdditionalUserInfo().getProfile();
                                 Log.d("BOTTOM SUCCESS", "success");
-                                Intent i = new Intent(Main.this, CategoryPicking.class);
+                                Intent i = new Intent(Main.this, HomeScreen.class);
                                 i.putExtra("NAME", p.get("displayName").toString());
 
                                 Context context = getApplicationContext();
