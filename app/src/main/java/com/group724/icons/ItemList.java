@@ -73,7 +73,7 @@ public class ItemList extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 //        LinearLayout itemLayout = findViewById(R.id.scrollLayout);
 
-        FloatingActionButton cart = findViewById(R.id.toCartitemlist);
+        FloatingActionButton cart = findViewById(R.id.tocCartitemlist);
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

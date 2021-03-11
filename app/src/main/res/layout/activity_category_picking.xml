@@ -163,6 +163,17 @@
             tools:background="@drawable/redbar"
             tools:textAllCaps="true" />
 
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="141dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="#fff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
