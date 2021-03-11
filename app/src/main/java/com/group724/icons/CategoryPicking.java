@@ -62,6 +62,15 @@ public class CategoryPicking extends AppCompatActivity {
 //            }
 //        });
 
+        FloatingActionButton cart = findViewById(R.id.toCartcp);
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), Cart.class);
+                startActivity(in);
+            }
+        });
+
         TextView all = findViewById(R.id.toAll);
         all.setOnClickListener(new View.OnClickListener() {
             @Override

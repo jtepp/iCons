@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -76,8 +77,7 @@ public class Cart extends AppCompatActivity {
         ViewGroup.MarginLayoutParams p = new ViewGroup.MarginLayoutParams(900, 140);
         p.setMargins(0,0,0,50);
         card.setLayoutParams(p);
-        
-        card.setBackgroundColor(Color.rgb(6,137,75));
+        card.setCardBackgroundColor(Color.rgb(6,137,75));
         card.setContentPadding(40,40,40,40);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             card.setElevation(10);
@@ -86,14 +86,18 @@ public class Cart extends AppCompatActivity {
 
         TextView name = new TextView(this);
         name.setText(n);
-        name.setTextColor(Color.BLACK);
+        name.setTextColor(Color.WHITE);
+        name.setTextSize(16);
+        name.setTypeface(null, Typeface.BOLD);
         name.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         card.addView(name);
 
         TextView quantity = new TextView(this);
         quantity.setText(q);
-        quantity.setTextColor(Color.BLACK);
+        quantity.setTextColor(Color.WHITE);
+        quantity.setTextSize(16);
         quantity.setGravity(Gravity.END);
+        quantity.setTypeface(null, Typeface.BOLD);
         quantity.setPadding(0,0,100,0);
         card.addView(quantity);
 
