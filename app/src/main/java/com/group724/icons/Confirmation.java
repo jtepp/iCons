@@ -21,8 +21,10 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,7 +37,7 @@ public class Confirmation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
-        String[] rooms = {"104",
+        List<String> rooms = Arrays.asList("104",
                 "218",
                 "317",
                 "105",
@@ -74,7 +76,8 @@ public class Confirmation extends AppCompatActivity {
                 "130",
                 "231",
                 "331",
-                "131"};
+                "131");
+
         String itemID = getIntent().getStringExtra("ID");
         Context context = getApplicationContext();
         SharedPreferences sharedPref = context.getSharedPreferences(
@@ -94,7 +97,13 @@ public class Confirmation extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-
+                if (rooms.contains(String.valueOf(rm.getText()))) {
+                    findViewById(R.id.confirm).setEnabled(true);
+                    findViewById(R.id.valid).setVisibility(View.INVISIBLE);
+                } else {
+                    findViewById(R.id.confirm).setEnabled(true);
+                    findViewById(R.id.valid).setVisibility(View.VISIBLE);
+                }
 
                 String room = String.valueOf(rm.getText());
                 Date d = new Date();
@@ -136,17 +145,18 @@ public class Confirmation extends AppCompatActivity {
                 confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        confirm.setEnabled(false);
-                        rq.add(sr);
-                        Context context = getApplicationContext();
-                        SharedPreferences sharedPref = (context.getSharedPreferences("iconsPref", Context.MODE_PRIVATE));
-                        SharedPreferences.Editor editor = sharedPref.edit();
-                        editor.putString("cartid", "");
-                        editor.putString("cartname", "");
-                        editor.putString("cartq", "");
-                        editor.apply();
+                        if (rooms.contains(String.valueOf(rm.getText()))) {
+                            confirm.setEnabled(false);
+                            rq.add(sr);
+                            Context context = getApplicationContext();
+                            SharedPreferences sharedPref = (context.getSharedPreferences("iconsPref", Context.MODE_PRIVATE));
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("cartid", "");
+                            editor.putString("cartname", "");
+                            editor.putString("cartq", "");
+                            editor.apply();
 
-
+                        }
                     }
                 });
 
