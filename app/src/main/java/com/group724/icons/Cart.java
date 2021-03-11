@@ -71,13 +71,13 @@ public class Cart extends AppCompatActivity {
 
 
 
-    @SuppressLint("ResourceAsColor")
     CardView returnCard(String n, String i, String q, int dex){
         CardView card = new CardView(getApplicationContext());
         ViewGroup.MarginLayoutParams p = new ViewGroup.MarginLayoutParams(900, 140);
         p.setMargins(0,0,0,50);
         card.setLayoutParams(p);
-        card.setBackgroundColor(R.color.green);
+        
+        card.setBackgroundColor(Color.rgb(6,137,75));
         card.setContentPadding(40,40,40,40);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             card.setElevation(10);
