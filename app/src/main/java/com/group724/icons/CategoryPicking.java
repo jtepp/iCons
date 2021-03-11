@@ -53,7 +53,7 @@ public class CategoryPicking extends AppCompatActivity {
 //            }
 //        });
 
-        Button all = findViewById(R.id.toAll);
+        TextView all = findViewById(R.id.toAll);
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +63,7 @@ public class CategoryPicking extends AppCompatActivity {
             }
         });
 
-        Button textbooks = findViewById(R.id.toTextbooks);
+        TextView textbooks = findViewById(R.id.toTextbooks);
         textbooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,16 +73,16 @@ public class CategoryPicking extends AppCompatActivity {
             }
         });
 
-        Button supplies = findViewById(R.id.toSupplies);
+        TextView supplies = findViewById(R.id.toSupplies);
         supplies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(getApplicationContext(), ItemList.class);
-                in.putExtra("CATEGORY", "Office Equipment");
+                in.putExtra("CATEGORY", "Supplies");
                 startActivity(in);
             }
         });
-        Button chargers = findViewById(R.id.toChargers);
+        TextView chargers = findViewById(R.id.toChargers);
         chargers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +92,7 @@ public class CategoryPicking extends AppCompatActivity {
             }
         });
 
-        Button workbooks = findViewById(R.id.toWorkbooks);
+        TextView workbooks = findViewById(R.id.toWorkbooks);
         chargers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,12 +102,12 @@ public class CategoryPicking extends AppCompatActivity {
             }
         });
 
-        Button cram = findViewById(R.id.toCram);
+        TextView cram = findViewById(R.id.toBooklets);
         chargers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(getApplicationContext(), ItemList.class);
-                in.putExtra("CATEGORY", "Course Cram Booklets");
+                in.putExtra("CATEGORY", "Booklets");
                 startActivity(in);
             }
         });
