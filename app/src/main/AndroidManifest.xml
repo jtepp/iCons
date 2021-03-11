@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ICons">
-        <activity android:name=".HomeScreen"></activity>
+        <activity android:name=".Hours"></activity>
+        <activity android:name=".HomeScreen" />
         <activity android:name=".Cart" />
         <activity android:name=".Confirmation" />
         <activity android:name=".ItemInfo" />
