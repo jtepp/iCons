@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/categoryblank"
+    app:statusBarBackground="@color/red"
     tools:context=".CategoryPicking">
 
     <androidx.constraintlayout.widget.ConstraintLayout
