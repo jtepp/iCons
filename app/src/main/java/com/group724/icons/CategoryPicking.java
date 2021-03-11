@@ -112,7 +112,7 @@ public class CategoryPicking extends AppCompatActivity {
         });
 
         TextView workbooks = findViewById(R.id.toWorkbooks);
-        chargers.setOnClickListener(new View.OnClickListener() {
+        workbooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(getApplicationContext(), ItemList.class);
@@ -121,8 +121,8 @@ public class CategoryPicking extends AppCompatActivity {
             }
         });
 
-        TextView cram = findViewById(R.id.toBooklets);
-        chargers.setOnClickListener(new View.OnClickListener() {
+        TextView book = findViewById(R.id.toBooklets);
+        book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(getApplicationContext(), ItemList.class);
