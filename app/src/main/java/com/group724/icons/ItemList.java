@@ -87,7 +87,7 @@ public class ItemList extends AppCompatActivity {
                         allItems.add(doc);
 
                         if (!subs.contains(doc.getSub())) {
-                            subs.add(doc.getSub());
+                            subs.add(doc.getSub()+(category.equalsIgnoreCase("all") ? " - "+doc.getCategory() : "" ));
                         }
 //                        Log.d("TAG", d.getId() + " => " + doc);
 
@@ -135,7 +135,7 @@ public class ItemList extends AppCompatActivity {
 
             ArrayList<Item> arrayList = new ArrayList<>();
             for (int c=0; c<allItems.size(); c++){
-                if (allItems.get(c).getSub().equalsIgnoreCase(subs.get(g))) {
+                if (allItems.get(c).getSub().equalsIgnoreCase(subs.get(g).split(" - ")[0])) {
                     arrayList.add(allItems.get(c));
                 }
             }
