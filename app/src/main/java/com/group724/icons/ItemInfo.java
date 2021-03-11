@@ -42,7 +42,7 @@ public class ItemInfo extends AppCompatActivity {
         setContentView(R.layout.activity_item_info);
         String itemID = getIntent().getStringExtra("ID");
         TextView name = findViewById(R.id.itemName), category = findViewById(R.id.itemCategory), remaining = findViewById(R.id.remaining);
-        Button request = findViewById(R.id.req);
+        TextView request = findViewById(R.id.req);
         TextView quantityText = findViewById(R.id.quantityText);
         quantityText.setText("0");
 
