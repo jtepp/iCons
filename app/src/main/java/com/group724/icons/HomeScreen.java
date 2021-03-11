@@ -41,6 +41,7 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(getApplicationContext(), CategoryPicking.class);
+                in.putExtra("NAME", e.getString("NAME", null));
                 startActivity(in);
 
             }
