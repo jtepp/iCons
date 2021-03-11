@@ -11,7 +11,7 @@
         android:id="@+id/include2"
         layout="@layout/content_category_picking"
         android:layout_width="428dp"
-        android:layout_height="TODO"
+        android:layout_height="fill_parent"
         android:background="@color/green" />
 
 
