@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +48,14 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
+        Button meet = findViewById(R.id.MeetTheIcons);
+        meet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(Intent.ACTION_VIEW, Uri.parse("https://icon.engsoc.queensu.ca/hestia-front/team/"));
+                startActivity(in);
+            }
+        });
 
         Button signOut = findViewById(R.id.signOut);
         signOut.setOnClickListener(new View.OnClickListener() {
@@ -67,5 +76,9 @@ public class HomeScreen extends AppCompatActivity {
                 editor.apply();
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+
     }
 }

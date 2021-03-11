@@ -125,8 +125,5 @@ public class CategoryPicking extends AppCompatActivity {
 
 
     }
-    @Override
-    public void onBackPressed() {
 
-    }
 }
