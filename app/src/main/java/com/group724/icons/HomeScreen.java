@@ -68,7 +68,7 @@ public class HomeScreen extends AppCompatActivity {
         });
 
         Button theHours = findViewById(R.id.HoursOfOperation);
-        meet.setOnClickListener(new View.OnClickListener() {
+        theHours.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(getApplicationContext(), Hours.class);
