@@ -1,5 +1,5 @@
 # iCons
-## A new solution for the Queen's University iCons service
+> A new solution for the Queen's University iCons service
 
 
 The iCons service at Queen's University consists of a group of student volunteers who run a rental service.
