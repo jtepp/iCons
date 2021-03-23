@@ -83,7 +83,7 @@ public class ItemInfo extends AppCompatActivity {
                         if (item.getAvailable() > 0 && !String.valueOf(quantityText.getText()).equalsIgnoreCase("")) {
                             try {
                                 Integer num = Integer.parseInt(String.valueOf(quantityText.getText()));
-                                if (Integer.parseInt(String.valueOf(quantityText.getText())) > 0 && Integer.parseInt(String.valueOf(quantityText.getText())) < item.getAvailable()) {
+                                if (Integer.parseInt(String.valueOf(quantityText.getText())) > 0 && Integer.parseInt(String.valueOf(quantityText.getText())) <= item.getAvailable()) {
                                     request.setEnabled(true);
                                 } else {
                                     request.setEnabled(false);
