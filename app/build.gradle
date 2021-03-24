@@ -11,6 +11,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
+        vectorDrawables.useSupportLibrary = true
         applicationId "com.group724.icons"
         minSdkVersion 16
         targetSdkVersion 30
